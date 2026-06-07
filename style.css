@@ -9,6 +9,7 @@
     --noise-opacity: 0.04;
     --cursor-blend: difference;
     --nav-blend: difference;
+    --nav-bg: rgba(5, 5, 5, 0.6);
     
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'Outfit', sans-serif;
@@ -30,6 +31,7 @@
     --noise-opacity: 0.08;
     --cursor-blend: multiply;
     --nav-blend: normal;
+    --nav-bg: rgba(244, 244, 240, 0.6);
 }
 
 * {
@@ -113,12 +115,16 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    mix-blend-mode: var(--nav-blend);
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease, padding 0.3s ease;
 }
 
 .logo {
@@ -341,7 +347,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .about-image-placeholder::after {
@@ -355,10 +361,16 @@ section {
     z-index: -1;
 }
 
-.img-inner {
-    font-family: var(--font-display);
-    font-size: 15rem;
-    color: rgba(255, 255, 255, 0.05);
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    transition: filter 0.5s ease;
+}
+
+.profile-photo:hover {
+    filter: grayscale(0%) contrast(1);
 }
 
 /* Experience */
